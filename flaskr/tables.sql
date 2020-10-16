@@ -1,55 +1,69 @@
 use bluedb;
 
-create table if not exists bluedb.'employees'(
-    'name' varchar(30) NOT NULL,
-    'email' varchar(64) NOT NULL,
-    'id' varchar(8) NOT NULL PRIMARY KEY,
-    'phone' varchar(10),
-    'team' ENUM('Sales', 'Marketing', 'HR', 'Technology', 'Finance') NOT NULL,
-    'designation' ENUM('Analyst', 'Programmer', 'Manager', 'Senior Manager', 'Director') NOT NULL 
+create table if not exists bluedb.employee (
+    name varchar(30) NOT NULL,
+    email varchar(64) NOT NULL,
+    id varchar(8) NOT NULL PRIMARY KEY,
+    phone varchar(10),
+    team ENUM('Sales', 'Marketing', 'HR', 'Technology', 'Finance') NOT NULL,
+    designation ENUM('Analyst', 'Programmer', 'Manager', 'Senior Manager', 'Director') NOT NULL 
     );
 
 
-create table if not exists bluedb.'conf_rooms' (
-    'id' varchar(8) NOT NULL PRIMARY KEY,
-    'name' varchar(30) NOT NULL,
-    'email' varchar(64) NOT NULL,
-    'capacity' varchar(2) NOT NULL,
-    'status' ENUM('Available', 'Occupied')
+create table if not exists bluedb.conf_room (
+    id varchar(8) NOT NULL PRIMARY KEY,
+    name varchar(30) NOT NULL,
+    email varchar(64) NOT NULL,
+    capacity varchar(2) NOT NULL,
+    status ENUM('Available', 'Occupied')
 );
 
+insert into bluedb.employee (id, name, email, phone, team , designation)
+values 
+('E1', 'Mahesh Sharma', 'mahesh.sharma@blue.com', '9891234567', 'Sales', 'Analyst' ),
+('E2', 'Rahul Yadav', 'rahul.yadav@blue.com', '9891234577', 'Sale', 'Analyst' ),
+('E3', 'Viraj Pant', 'viraj.pant@blue.com', '9891234587', 'Sales', 'Analyst' ),
+('E4', 'Soumin Mohanty', 'soumin.mohanty@blue.com', '9891234597', 'Sales', 'Analyst' ),
+('E5', 'Shovik Mohanty', 'shovik.mohanty@blue.com', '9891234507', 'Sales', 'Analyst' ),
+('E6', 'Suresh Bagga', 'suresh.bagga@blue.com', '9891234517', 'Sales', 'Analyst' );
 
-insert into bluedb.employees (id, name, email, phone, team , designation)
-values (
-('E1', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234567', Sales, Analyst ),
-('E2', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234577', Sales, Analyst ),
-('E3', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234587', Sales, Analyst ),
-('E4', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234597', Sales, Analyst ),
-('E5', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234507', Sales, Analyst ),
-('E6', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234517', Sales, Analyst ),
-('E7', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234527', Sales, Analyst ),
-('E8', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234537', Sales, Analyst ),
-('E9', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234547', Sales, Analyst ),
-('E10', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234568', Sales, Analyst ),
-('E11', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234569', Sales, Analyst ),
-('E12', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234560', Sales, Analyst ),
-('E13', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234561', Sales, Analyst ),
-('E14', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234562', Sales, Analyst ),
-('E15', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234563', Sales, Analyst ),
-('E16', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234564', Sales, Analyst ),
-('E17', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234565', Sales, Analyst ),
-('E18', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234566', Sales, Analyst ),
-('E19', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234667', Sales, Analyst ),
-('E20', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234767', Sales, Analyst ),
-('E21', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234867', Sales, Analyst ),
-('E22', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234967', Sales, Analyst ),
-('E23', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234067', Sales, Analyst ),
-('E24', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234167', Sales, Analyst ),
-('E25', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234267', Sales, Analyst ),
-('E26', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234367', Sales, Analyst ),
-('E27', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891234467', Sales, Analyst ),
-('E28', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891235567', Sales, Analyst ),
-('E29', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891236567', Sales, Analyst ),
-('E30', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891237567', Sales, Analyst ),
-('E31', 'Mahesh Solanki', 'mahesh.solanki@blue.com', '9891238567', Sales, Analyst )
-);
+
+insert into bluedb.employee (id, name, email, phone, team , designation)
+values 
+('E7', 'Pranav Parchure', 'pranav.parchure@blue.com', '9891234527', 'Marketing', 'Manager' ),
+('E8', 'Rahul Sharma', 'rahul.sharma@blue.com', '9891234537', 'Marketing', 'Manager' ),
+('E9', 'Ramesh Nandi', 'ramesh.nandi@blue.com', '9891234547', 'Marketing', 'Analyst' ),
+('E10', 'Kamesh Verma', 'kamesh.verma@blue.com', '9891234568', 'Marketing', 'Analyst' ),
+('E11', 'Ajay Pandey', 'ajay.pandey@blue.com', '9891234569', 'Marketing', 'Analyst' ),
+('E12', 'Mahesh Kamra', 'mahesh.kamra@blue.com', '9891234560', 'Marketing', 'Analyst' ),
+('E13', 'Rajesh Ranjan', 'rajesh.ranjan@blue.com', '9891234561', 'Marketing', 'Analyst' );
+
+
+insert into bluedb.employee (id, name, email, phone, team , designation)
+values 
+('E14', 'Mahendra Solanki', 'mahesh.solanki@blue.com', '9891234562', 'Technology', 'Manager' ),
+('E15', 'Sumit Tyagi', 'mahesh.solanki@blue.com', '9891234563', 'Technology', 'Manager' ),
+('E16', 'Suresh Nigam', 'mahesh.solanki@blue.com', '9891234564', 'Technology', 'Programmer' ),
+('E17', 'Ramesh Iyer', 'mahesh.solanki@blue.com', '9891234565', 'Technology', 'Programmer' ),
+('E18', 'Sunil Sardana', 'mahesh.solanki@blue.com', '9891234566', 'Technology', 'Programmer' ),
+('E19', 'Mahesh Singh', 'mahesh.solanki@blue.com', '9891234667', 'Technology', 'Programmer' ),
+('E20', 'Anjali Sharma', 'mahesh.solanki@blue.com', '9891234767', 'Technology', 'Programmer' );
+
+
+insert into bluedb.employee (id, name, email, phone, team , designation)
+values 
+('E21', 'Anshul Singhal', 'mahesh.solanki@blue.com', '9891234867', 'HR', 'Manager' ),
+('E22', 'Arjun Yadav', 'mahesh.solanki@blue.com', '9891234967', 'HR', 'Manager' ),
+('E23', 'Mahima Bist', 'mahesh.solanki@blue.com', '9891234067', 'HR', 'Analyst' ),
+('E24', 'Mahendra Verma', 'mahesh.solanki@blue.com', '9891234167', 'HR', 'Analyst' ),
+('E25', 'Ajay Ahuja', 'mahesh.solanki@blue.com', '9891234267', 'HR', 'Analyst' ),
+('E26', 'Mahesh Singhal', 'mahesh.solanki@blue.com', '9891234367', 'HR', 'Analyst' ),
+('E27', 'Suketu Modi', 'mahesh.solanki@blue.com', '9891234467', 'HR', 'Analyst' );
+
+
+insert into bluedb.employee (id, name, email, phone, team , designation)
+values 
+('E28', 'Prakhar Bagga', 'mahesh.solanki@blue.com', '9891235567', 'Finance', 'Manager' ),
+('E29', 'Arjun Saxena', 'mahesh.solanki@blue.com', '9891236567', 'Finance', 'Manager' ),
+('E30', 'Kamesh Mehra', 'mahesh.solanki@blue.com', '9891237567', 'Finance', 'Analyst' ),
+('E31', 'Neelam Singh', 'mahesh.solanki@blue.com', '9891238567', 'Finance', 'Analyst' );
