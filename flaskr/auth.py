@@ -1,5 +1,5 @@
 import functools
-form flask import (
+from flask import (
     BluePrint, flash, g, redirect, 
     render_template, 
     request, session, url_for
@@ -7,13 +7,13 @@ form flask import (
 from werkzeug.security import check_password_hash, genrate_password_hash
 from flaskr.db import get_db
 
-bp = BlurPrint('auth', __name__, url_prefix='/auth')
+bp = BluePrint('auth', __name__, url_prefix='/auth')
 
 
 @bp.auth('/register', methods=('GET', 'POST'))
 def register():
 
-    if request_method = 'POST':
+    if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         db = db.get_()
@@ -41,8 +41,11 @@ def user_exists(db, username):
         True
     """
 def add_user(username):
+    pass
+    """
     cursor.execute(
         "INSERT INTO Users (username, password) VALUES (?,?)"),
         (username, generate_password_hash(password)
         )
     db.commit()?
+    """
