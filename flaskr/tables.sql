@@ -48,29 +48,29 @@ values
 
 insert into bluedb.employee (id, name, email, phone, team , designation)
 values 
-('E14', 'Mahendra Solanki', 'mahesh.solanki@blue.com', '9891234562', 'Technology', 'Manager' ),
-('E15', 'Sumit Tyagi', 'mahesh.solanki@blue.com', '9891234563', 'Technology', 'Manager' ),
-('E16', 'Suresh Nigam', 'mahesh.solanki@blue.com', '9891234564', 'Technology', 'Programmer' ),
-('E17', 'Ramesh Iyer', 'mahesh.solanki@blue.com', '9891234565', 'Technology', 'Programmer' ),
-('E18', 'Sunil Sardana', 'mahesh.solanki@blue.com', '9891234566', 'Technology', 'Programmer' ),
-('E19', 'Mahesh Singh', 'mahesh.solanki@blue.com', '9891234667', 'Technology', 'Programmer' ),
-('E20', 'Anjali Sharma', 'mahesh.solanki@blue.com', '9891234767', 'Technology', 'Programmer' );
+('E14', 'Mahendra Solanki', 'mahendra.solanki@blue.com', '9891234562', 'Technology', 'Manager' ),
+('E15', 'Sumit Tyagi', 'sumit.tyagi@blue.com', '9891234563', 'Technology', 'Manager' ),
+('E16', 'Suresh Nigam', 'suresh.nigam@blue.com', '9891234564', 'Technology', 'Programmer' ),
+('E17', 'Ramesh Iyer', 'ramesh.iyer@blue.com', '9891234565', 'Technology', 'Programmer' ),
+('E18', 'Sunil Sardana', 'sunil.sardana@blue.com', '9891234566', 'Technology', 'Programmer' ),
+('E19', 'Mahesh Singh', 'mahesh.singh@blue.com', '9891234667', 'Technology', 'Programmer' ),
+('E20', 'Anjali Sharma', 'anjali.sharma@blue.com', '9891234767', 'Technology', 'Programmer' );
 
 
 insert into bluedb.employee (id, name, email, phone, team , designation)
 values 
-('E21', 'Anshul Singhal', 'mahesh.solanki@blue.com', '9891234867', 'HR', 'Manager' ),
-('E22', 'Arjun Yadav', 'mahesh.solanki@blue.com', '9891234967', 'HR', 'Manager' ),
-('E23', 'Mahima Bist', 'mahesh.solanki@blue.com', '9891234067', 'HR', 'Analyst' ),
-('E24', 'Mahendra Verma', 'mahesh.solanki@blue.com', '9891234167', 'HR', 'Analyst' ),
-('E25', 'Ajay Ahuja', 'mahesh.solanki@blue.com', '9891234267', 'HR', 'Analyst' ),
-('E26', 'Mahesh Singhal', 'mahesh.solanki@blue.com', '9891234367', 'HR', 'Analyst' ),
-('E27', 'Suketu Modi', 'mahesh.solanki@blue.com', '9891234467', 'HR', 'Analyst' );
+('E21', 'Anshul Singhal', 'anshul.singhal@blue.com', '9891234867', 'HR', 'Manager' ),
+('E22', 'Arjun Yadav', 'arjun.yagav@blue.com', '9891234967', 'HR', 'Manager' ),
+('E23', 'Mahima Bist', 'mahima.bist@blue.com', '9891234067', 'HR', 'Analyst' ),
+('E24', 'Mahendra Verma', 'mahendra.verma@blue.com', '9891234167', 'HR', 'Analyst' ),
+('E25', 'Ajay Ahuja', 'ajay.ahuja@blue.com', '9891234267', 'HR', 'Analyst' ),
+('E26', 'Mahesh Singhal', 'mahesh.singhal@blue.com', '9891234367', 'HR', 'Analyst' ),
+('E27', 'Suketu Modi', 'suketu.modi@blue.com', '9891234467', 'HR', 'Analyst' );
 
 
 insert into bluedb.employee (id, name, email, phone, team , designation)
 values 
-('E28', 'Prakhar Bagga', 'mahesh.solanki@blue.com', '9891235567', 'Finance', 'Manager' ),
-('E29', 'Arjun Saxena', 'mahesh.solanki@blue.com', '9891236567', 'Finance', 'Manager' ),
-('E30', 'Kamesh Mehra', 'mahesh.solanki@blue.com', '9891237567', 'Finance', 'Analyst' ),
-('E31', 'Neelam Singh', 'mahesh.solanki@blue.com', '9891238567', 'Finance', 'Analyst' );
+('E28', 'Prakhar Bagga', 'prakhar.bagga@blue.com', '9891235567', 'Finance', 'Manager' ),
+('E29', 'Arjun Saxena', 'arjun.saxena@blue.com', '9891236567', 'Finance', 'Manager' ),
+('E30', 'Kamesh Mehra', 'kamesh.mehra@blue.com', '9891237567', 'Finance', 'Analyst' ),
+('E31', 'Neelam Singh', 'neelam.singh@blue.com', '9891238567', 'Finance', 'Analyst' );

@@ -21,9 +21,13 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    @app.route('/')
+    def home():
+        return "Home: Hello, World"
+
     @app.route('/hello')
     def hello():
-        return "INIT: Hello, World"
+        return "Hello: Hello, World"
 
     from . import auth
     app.register_blueprint(auth.bp)
