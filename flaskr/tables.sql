@@ -18,6 +18,13 @@ create table if not exists bluedb.conf_room (
     status ENUM('Available', 'Occupied')
 );
 
+create table if not exists bluedb.users (
+    username varchar(16) NOT NULL,
+    password_hash varchar(64) NOT NULL,
+    PRIMARY KEY (username)
+);
+
+
 insert into bluedb.employee (id, name, email, phone, team , designation)
 values 
 ('E1', 'Mahesh Sharma', 'mahesh.sharma@blue.com', '9891234567', 'Sales', 'Analyst' ),
