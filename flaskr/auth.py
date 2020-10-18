@@ -10,7 +10,7 @@ from .db import get_db
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
-@bp.auth('/register', methods=('GET', 'POST'))
+@bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
         username = request.form['username']
@@ -40,40 +40,6 @@ def register():
 
     return render_template('auth/register.html')
 
-def register2():
-
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        dbcursor = get_db()
-        error = None
-        
-        # username missing
-        if not username:
-            error = "Username is required"
-        
-        # password missing
-        elif not password:
-            error = "Password must be provided"
-        
-        elif user_exists(dbcursor, username):
-            error = "Username has already been taken"
-        else:
-            add_user(dbcursor, username)
-
-def user_exists(cursor, username):
-    cursor.execute("SELCT * from bluedb.login where username="+username)
-    data  = cursor.fetchone()
-    if data is None:
-        return False
-    else:
-        True
-def add_user(cursor, username):
-    cursor.execute(
-        "INSERT INTO bluedb.users (username, password) VALUES (?,?)",
-        (username, generate_password_hash(password)))
-
-
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
@@ -83,7 +49,7 @@ def login():
         db_cursor = db.connection().cursor()
         error = None
         user = db_cursor.execute(
-            'SELECT * FROM user WHERE username = ?', (username,)
+            'SELECT * FROM bluedb.user WHERE username = ?', (username,)
         ).fetchone()
 
         if user is None:
@@ -99,3 +65,29 @@ def login():
         flash(error)
 
     return render_template('auth/login.html')
+
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = get_db().execute(
+            'SELECT * FROM bluedb.user WHERE id = ?', (user_id,)
+        ).fetchone()
+
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+
+        return view(**kwargs)
+
+    return wrapped_view
