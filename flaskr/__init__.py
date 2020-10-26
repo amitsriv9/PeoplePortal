@@ -1,15 +1,16 @@
 import os
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
 
 def create_app(test_config=None):
 
     app = Flask(__name__, instance_relative_config=True)
-   
-    app.config['MYSQL_USER'] = 'devuser'
-    app.config['MYSQL_PASSWORD'] = 'devuser'
-    app.config['MYSQL_DB'] = 'bluedb'
-    app.config['MYSQL_HOST'] = 'localhost'
-    app.config['MYSQL_PORT'] = 3306
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://devuser:devuser@localhost/bluedb'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db.init_app(app)
     
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
@@ -28,10 +29,6 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         return "Second: Hello, World"
-
-    from . import db 
-    with app.app_context():
-        db.get_db()
 
     from . import auth
     app.register_blueprint(auth.bp)

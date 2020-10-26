@@ -5,7 +5,7 @@ from flask import (
     request, session, url_for
     )
 from werkzeug.security import check_password_hash, generate_password_hash
-from .db import get_db
+from .models import db, User
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -15,25 +15,21 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        db = get_db()
-        db_cursor = db.connection().cursor()
+        existing_user = User.query.filter_by(username=username).first()
+        
         error = None
-
         if not username:
             error = 'Username is required.'
         elif not password:
             error = 'Password is required.'
-        elif db_cursor.execute(
-            'SELECT username FROM bluedb.user WHERE username = ?', (username,)
-        ).fetchone() is not None:
+        elif existing_user:
             error = 'User {} is already registered.'.format(username)
 
         if error is None:
-            db_cursor.execute(
-                'INSERT INTO user (username, password) VALUES (?, ?)',
-                (username, generate_password_hash(password))
-            )
-            db.connection().commit()
+            new_user = User(username=username, 
+                            password_hash=generate_password_hash(password))
+            db.session.add(new_user)
+            db.session.commit()
             return redirect(url_for('auth.login'))
 
         flash(error)
@@ -45,22 +41,18 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        db = get_db()
-        db_cursor = db.connection().cursor()
+        existing_user = User.query.filter_by(username=username).first()
+        
         error = None
-        user = db_cursor.execute(
-            'SELECT * FROM bluedb.user WHERE username = ?', (username,)
-        ).fetchone()
-
-        if user is None:
-            error = 'Incorrect username.'
-        elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password.'
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'
+        elif not existing_user:
+            error = 'User {} is not registered.'.format(username)
 
         if error is None:
-            session.clear()
-            session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('portal.landing'))
 
         flash(error)
 
@@ -68,14 +60,12 @@ def login():
 
 @bp.before_app_request
 def load_logged_in_user():
-    user_id = session.get('user_id')
+    username = session.get('username')
 
-    if user_id is None:
+    if username is None:
         g.user = None
     else:
-        g.user = get_db().execute(
-            'SELECT * FROM bluedb.user WHERE id = ?', (user_id,)
-        ).fetchone()
+        g.user = User.query.filter_by(username=username).first()
 
 @bp.route('/logout')
 def logout():
