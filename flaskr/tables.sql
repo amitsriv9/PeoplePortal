@@ -6,7 +6,7 @@ create table if not exists bluedb.employee (
     id varchar(8) NOT NULL PRIMARY KEY,
     phone varchar(10),
     team ENUM('Sales', 'Marketing', 'HR', 'Technology', 'Finance') NOT NULL,
-    designation ENUM('Analyst', 'Programmer', 'Manager', 'Senior Manager', 'Director') NOT NULL 
+    designation ENUM('Analyst', 'Programmer', 'Manager', 'SeniorManager', 'Director') NOT NULL 
     );
 
 
