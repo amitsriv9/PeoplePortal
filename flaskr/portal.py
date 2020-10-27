@@ -3,19 +3,20 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from flaskr.auth import login_required
-from flaskr.db import get_db
+from .auth import login_required
+from .models import db, Employee
 
-bp = Blueprint('blog', __name__)
+bp = Blueprint('portal', __name__)
 
 
 
-@bp.route('/portal, methods=('GET', 'POST'))
+@bp.route('/portal', methods=('GET', 'POST'))
 def portal_home():
-    if request,method == 'GET':
-        db = get_db()
-        error = None
+    if request.method == 'POST':
+        username = request.form['username']
+        if not username:
+            error = "Could not retrieve the username"
 
-    cursor.execute('SELECT * from bluedb.employee')
-    result = cursor.fetchall()
-    return render_template('portal/landing.html', result = result)
+        all_employees = Employee.query().all()
+    return render_template('portal/landing.html', 
+                            result = all_employees)
